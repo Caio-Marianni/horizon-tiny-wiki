@@ -1,9 +1,10 @@
-import Image from "next/image";
+import ParallaxEffect from "@/components/ParallaxEffect";
+
 
 export default function Home() {
   return (
     <div className="">
-      sou teste, espero que de certo
+      <ParallaxEffect />
     </div>
   );
 }

@@ -1,16 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import MainThumb from "../../public/mainThumb.jpg";
-import Main4 from "../../public/layerAloy.webp";
-import Main3 from "../../public/layerMountain.webp";
-import Main2 from "../../public/layerTreeLast.webp";
-import Main1 from "../../public/layerMachines.webp";
+import Main1 from "../../public/layerAloy.webp";
+import Main2 from "../../public/layerMountain.webp";
+import Main3 from "../../public/layerTreeLast.webp";
+import Main4 from "../../public/layerMachines.webp";
 
 export default function ParallaxEffect() {
   // Estado para monitorar se todas as imagens foram carregadas
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(0); // Contador para as imagens carregadas
+  // Contador para as imagens carregadas
+  const [loadedCount, setLoadedCount] = useState(0);
+  // Observador para o efeito de parallax
+  const [offsetY, setOffsetY] = useState(0);
 
   // Função para lidar com o evento de carregamento de cada imagem
   const handleImageLoad = () => {
@@ -21,6 +24,17 @@ export default function ParallaxEffect() {
   if (loadedCount === 4 && !allImagesLoaded) {
     setAllImagesLoaded(true);
   }
+
+  // Função para atualizar o deslocamento vertical baseado na rolagem
+  const handleScroll = () => {
+    setOffsetY(window.scrollY);
+  };
+
+  // useEffect para adicionar o listener de rolagem e remover depois
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative w-full h-screen">
@@ -34,7 +48,7 @@ export default function ParallaxEffect() {
           style={{ objectFit: "cover" }}
         />
       </div>
-
+      {/* Imagens para efeito de parallax */}
       <Image
         src={Main1}
         alt="Imagem 1"
@@ -42,6 +56,9 @@ export default function ParallaxEffect() {
         className={`absolute object-cover object-center w-full h-full transition-opacity duration-500 ${
           allImagesLoaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{
+          transform: `translateY(${offsetY * 0.5}px)`
+        }}
         onLoad={handleImageLoad}
       />
       <Image
@@ -51,6 +68,9 @@ export default function ParallaxEffect() {
         className={`absolute object-cover object-center w-full h-full transition-opacity duration-600 ${
           allImagesLoaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{
+          transform: `translateY(${offsetY * 0.3}px)`
+        }}
         onLoad={handleImageLoad}
       />
       <Image
@@ -60,6 +80,9 @@ export default function ParallaxEffect() {
         className={`absolute object-cover object-center w-full h-full transition-opacity duration-700 ${
           allImagesLoaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{
+          transform: `translateY(${offsetY * 0.2}px)`
+        }}
         onLoad={handleImageLoad}
       />
       <Image
@@ -69,6 +92,9 @@ export default function ParallaxEffect() {
         className={`absolute object-cover object-center w-full h-full transition-opacity duration-1000 ${
           allImagesLoaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{
+          transform: `translateY(${offsetY * 0.1}px)`
+        }}
         onLoad={handleImageLoad}
       />
     </div>

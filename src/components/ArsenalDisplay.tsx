@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import ArsenalBg from "../../public/arsenalBackground.webp";
 import { weapons } from "@/core/constants"; // Importa a lista de armas
 
@@ -17,7 +18,7 @@ export default function ArsenalDisplay() {
       className="p-20 bg-cover bg-fixed bg-center min-h-screen"
       style={{ backgroundImage: `url(${ArsenalBg.src})` }}
     >
-      <div className="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 pb-4 backdrop-blur-[20px] bg-transparent bg-[linear-gradient(160deg,rgba(18, 15, 12, 0.8),rgba(251, 102, 37, 0.5))] rounded-xl">
+      <div className="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 pb-4 min-h-[1300px] md:min-h-[800px] backdrop-blur-[20px] bg-transparent bg-[linear-gradient(160deg,rgba(18, 15, 12, 0.8),rgba(251, 102, 37, 0.5))] rounded-xl">
         {/* Title and Info/Elements */}
         <div className="flex flex-col p-4 pt-10">
           <h2 className="text-gray-500 font-semibold">Weapons and Utilities</h2>
@@ -54,11 +55,13 @@ export default function ArsenalDisplay() {
                 <strong className="text-white">Elements: </strong>
                 <div className="flex space-x-2 ">
                   {selectedWeapon.tagsElement.map((element, index) => (
-                    <img
+                    <Image
                       key={index}
                       src={element}
+                      width={32}
+                      height={32}
                       alt={`Element ${index}`}
-                      className="w-8 h-8 drop-shadow-xl"
+                      className="drop-shadow-xl"
                     />
                   ))}
                 </div>
@@ -76,7 +79,9 @@ export default function ArsenalDisplay() {
               }`}
               key={selectedWeapon.imagem} // Use the key to trigger the animation on image change
             >
-              <img
+              <Image
+                width={250}
+                height={300}
                 src={selectedWeapon.imagem}
                 alt={selectedWeapon.nome}
                 className="pointer-events-none min-w-[0px] max-w-[300px] min-h-[0px] max-h-[400px] shadow-white drop-shadow-2xl rounded-md transition-transform duration-500 ease-in-out"
@@ -111,7 +116,9 @@ export default function ArsenalDisplay() {
                 onChange={() => setSelectedValue(weapon.id.toString())}
                 className="peer hidden"
               />
-              <img
+              <Image
+              width={250}
+              height={300}
                 src={weapon.imagem}
                 alt={weapon.nome}
                 className={`pointer-events-none rounded-md transition-transform drop-shadow-2xl shadow-red-600 duration-500 ease-in-out ${

@@ -6,6 +6,8 @@ const weapons: Weapon[] = [
     nome: "War Bow",
     imagem: "/weapons/War-Bow.webp",
     tagsType: ["Ranged"],
+    tagsColor: ["green"],
+    rarityColor: ["green"],
     tagsElement: ["/elements/Freeze.webp", "/elements/Shock.webp", "/elements/Corruption.webp"],
     description: "The War Bow is a ranged weapon in Horizon Zero Dawn. It is a low damage bow that specializes in delivering elemental payloads to targets, forcing them into vulnerable states. This bow is best used in conjunction with other weapons due to its low impact and tear damage."
   },{
@@ -18,7 +20,7 @@ const weapons: Weapon[] = [
   },{
     id: 3,
     nome: "Spear",
-    imagem: "/Weapons/Spear.webp",
+    imagem: "/weapons/Spear.webp",
     tagsType: ["Melee"],
     tagsElement: ["/elements/Damage.webp"],
     description: "Strong attacks have a long charge up time and deal moderate damage to enemies. Aloy executes a heavier sequence of two vertical slashes which can knock down small to medium sized machines. Depending on the size of the machine, it may take only one hit to do so; alternately, they may be immune to the spear's knock down effect completely. Strong attacks also have a high chance of removing armor and components from machines.",

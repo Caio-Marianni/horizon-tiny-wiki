@@ -3,11 +3,11 @@ import ParallaxEffect from "@/components/ParallaxEffect";
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <div className="h-screen">
+    <div className="flex flex-col scroll-smooth">
+      {/* <div className="h-screen">
         <ParallaxEffect />
-      </div>
-      <div className="h-screen">
+      </div> */}
+      <div>
         <ArsenalDisplay />
       </div>
     </div>

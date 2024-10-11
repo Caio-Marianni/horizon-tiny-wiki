@@ -1,14 +1,14 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
-/* 
+@tailwind utilities; 
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
 } */
 
-/* @layer components {
+@layer components {
   .container {
     @apply max-w-7xl mx-auto px-10
   }
-} */
+}

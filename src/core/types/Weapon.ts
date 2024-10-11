@@ -3,7 +3,7 @@ export default interface Weapon {
   nome: string;
   imagem: string;
   tagsType: string[];
-  tagsColor: string[];
+  rarity: string;
   rarityColor: string;
   tagsElement: string[];
   description: string;

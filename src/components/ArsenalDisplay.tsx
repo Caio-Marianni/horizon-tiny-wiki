@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import ArsenalBg from "../../public/arsenalBackground.webp";
 import { weapons } from "@/core/constants"; // Importa a lista de armas
@@ -9,8 +9,10 @@ export default function ArsenalDisplay() {
     weapons[0].id.toString()
   );
 
-  const selectedWeapon = weapons.find(
-    (weapon) => weapon.id.toString() === selectedValue
+  // Memoiza o selectedWeapon para evitar recalcular sempre
+  const selectedWeapon = useMemo(
+    () => weapons.find((weapon) => weapon.id.toString() === selectedValue),
+    [selectedValue]
   );
 
   return (
@@ -25,9 +27,11 @@ export default function ArsenalDisplay() {
           {selectedWeapon && (
             <div
               className={`transition-all duration-500 ease-in-out transform ${
-                selectedValue ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                selectedValue
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
-              key={selectedWeapon.id} // Use the key to trigger the animation on change
+              key={selectedWeapon.id}
             >
               <div className="flex gap-4 items-center">
                 <h3 className="py-2 text-4xl font-bold text-white">
@@ -62,6 +66,7 @@ export default function ArsenalDisplay() {
                       height={32}
                       alt={`Element ${index}`}
                       className="drop-shadow-xl"
+                      loading="lazy"
                     />
                   ))}
                 </div>
@@ -75,12 +80,14 @@ export default function ArsenalDisplay() {
           {selectedWeapon && (
             <div
               className={`transition-all duration-500 ease-in-out transform ${
-                selectedValue ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                selectedValue
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
-              key={selectedWeapon.imagem} // Use the key to trigger the animation on image change
+              key={selectedWeapon.imagem}
             >
               <Image
-              priority
+                priority
                 width={250}
                 height={300}
                 src={selectedWeapon.imagem}
@@ -118,8 +125,8 @@ export default function ArsenalDisplay() {
                 className="peer hidden"
               />
               <Image
-              width={250}
-              height={300}
+                width={250}
+                height={300}
                 src={weapon.imagem}
                 alt={weapon.nome}
                 className={`pointer-events-none rounded-md transition-transform drop-shadow-2xl shadow-red-600 duration-500 ease-in-out ${
@@ -127,6 +134,7 @@ export default function ArsenalDisplay() {
                     ? "rotate-[10deg] scale-125"
                     : "rotate-0 scale-100"
                 }`}
+                loading="lazy"
               />
               <div className="px-4 overflow-hidden">
                 <div className="font-bold text-white pb-1 mt-4">

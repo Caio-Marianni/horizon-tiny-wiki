@@ -15,10 +15,10 @@ export default function ArsenalDisplay() {
 
   return (
     <div
-      className="p-20 bg-cover bg-fixed bg-center min-h-screen"
+      className="md:p-20 bg-cover bg-fixed bg-center min-h-screen"
       style={{ backgroundImage: `url(${ArsenalBg.src})` }}
     >
-      <div className="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 pb-4 min-h-[1300px] md:min-h-[800px] backdrop-blur-[20px] bg-transparent bg-[linear-gradient(160deg,rgba(18, 15, 12, 0.8),rgba(251, 102, 37, 0.5))] rounded-xl">
+      <div className="md:container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 pb-4 min-h-[1300px] md:min-h-[800px] backdrop-blur-[20px] bg-transparent bg-[linear-gradient(160deg,rgba(18, 15, 12, 0.8),rgba(251, 102, 37, 0.5))] rounded-xl">
         {/* Title and Info/Elements */}
         <div className="flex flex-col p-4 pt-10">
           <h2 className="text-gray-500 font-semibold">Weapons and Utilities</h2>
@@ -80,11 +80,12 @@ export default function ArsenalDisplay() {
               key={selectedWeapon.imagem} // Use the key to trigger the animation on image change
             >
               <Image
+              priority
                 width={250}
                 height={300}
                 src={selectedWeapon.imagem}
                 alt={selectedWeapon.nome}
-                className="pointer-events-none min-w-[0px] max-w-[300px] min-h-[0px] max-h-[400px] shadow-white drop-shadow-2xl rounded-md transition-transform duration-500 ease-in-out"
+                className="pointer-events-none shadow-white drop-shadow-2xl rounded-md transition-transform duration-500 ease-in-out"
               />
             </div>
           )}

@@ -1,4 +1,5 @@
 import ArsenalDisplay from "@/components/ArsenalDisplay";
+import MachineDisplay from "@/components/MachineDisplay";
 import ParallaxEffect from "@/components/ParallaxEffect";
 
 export default function Home() {
@@ -9,6 +10,9 @@ export default function Home() {
       </div> */}
       <div>
         <ArsenalDisplay />
+      </div>
+      <div>
+        <MachineDisplay />
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export default function Home() {
         <ArsenalDisplay />
       </div>
       <div>
-        <MachineDisplay />
+        {/* <MachineDisplay /> */}
       </div>
     </div>
   );

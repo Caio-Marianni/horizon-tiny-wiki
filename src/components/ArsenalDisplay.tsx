@@ -19,6 +19,8 @@ export default function ArsenalDisplay() {
     <div className="relative h-full">
       {/* Background Image */}
       <Image
+      width={1920}
+      height={1080}
         src={ArsenalBg}
         alt="Arsenal background"
         quality={60}
@@ -41,33 +43,37 @@ export default function ArsenalDisplay() {
             {selectedWeapon && (
               <div className="flex flex-col gap-2 mt-2" key={selectedWeapon.id}>
                 {/* Name / tag / rarity */}
-                <div className="flex gap-4 items-center">
+                <div className="flex flex-wrap gap-4 items-center">
                   {/* Name */}
                   <h3 className="text-4xl font-bold text-white">
                     {selectedWeapon.nome}
                   </h3>
-                  {/* Tag */}
-                  <div
-                    className="mt-2 px-3 border-[1px] text-sm text-[#e2e2e2] rounded-full"
-                    style={{
-                      borderColor: selectedWeapon.tagsType.includes("Ranged")
-                        ? "#4CAF50"
-                        : "#FF5722",
-                    }}
-                  >
-                    {selectedWeapon.tagsType.join(" ")}
-                  </div>
-                  {/* Rarity */}
-                  <div className="mt-2 px-3 border-[1px] text-sm rounded-full"
-                  style={{
-                    color: selectedWeapon.rarityColor,
-                    borderColor: selectedWeapon.rarityColor,
-                  }}>
-                    {selectedWeapon.rarity}
+                  <div className="flex gap-2">
+                    {/* Tag */}
+                    <div
+                      className="mt-2 px-3 border-[1px] text-sm text-[#e2e2e2] rounded-full"
+                      style={{
+                        borderColor: selectedWeapon.tagsType.includes("Ranged")
+                          ? "#4CAF50"
+                          : "#FF5722",
+                      }}
+                    >
+                      {selectedWeapon.tagsType.join(" ")}
+                    </div>
+                    {/* Rarity */}
+                    <div
+                      className="mt-2 px-3 border-[1px] text-sm rounded-full"
+                      style={{
+                        color: selectedWeapon.rarityColor,
+                        borderColor: selectedWeapon.rarityColor,
+                      }}
+                    >
+                      {selectedWeapon.rarity}
+                    </div>
                   </div>
                 </div>
                 {/* Description */}
-                <p className="text-[#e2e2e2] text-sm font-normal">
+                <p className="mt-2 text-[#e2e2e2] text-sm font-normal">
                   {selectedWeapon.description}
                 </p>
                 {/* Elements */}
@@ -84,8 +90,6 @@ export default function ArsenalDisplay() {
                         quality={60}
                         loading="lazy"
                         unoptimized={true}
-                        placeholder="blur"
-                        blurDataURL={selectedWeapon.imagem}
                       />
                     ))}
                   </div>
@@ -142,8 +146,8 @@ export default function ArsenalDisplay() {
               <Image
                 src={weapon.imagem}
                 alt={weapon.nome}
-                width={720}
-                height={860}
+                width={360}
+                height={430}
                 quality={20}
                 loading="lazy"
                 unoptimized={true}

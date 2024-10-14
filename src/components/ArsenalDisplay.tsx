@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
-import { weapons } from "@/core/constants"; // Importa a lista de armas
+import { weapons } from "@/core/constants";
 
 export default function ArsenalDisplay() {
   const [selectedValue, setSelectedValue] = useState<string>(
@@ -16,97 +16,112 @@ export default function ArsenalDisplay() {
   );
 
   return (
-    <div
-      className="md:p-20 bg-cover bg-fixed bg-center min-h-screen"
-      style={{ backgroundImage: `url(${ArsenalBg.src})` }}
-    >
-      <div className="md:container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 pb-14 min-h-[1300px] md:min-h-[800px] rounded-xl">
-        {/* Title and Info/Elements */}
-        <div className="flex flex-col p-4 pt-10">
-          <h2 className="text-gray-500 font-semibold">Weapons and Utilities</h2>
-          {selectedWeapon && (
-            <div
-              className={`transition-all duration-500 ease-in-out transform ${
-                selectedValue
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              key={selectedWeapon.id}
-            >
-              <div className="flex gap-4 items-center">
-                <h3 className="py-2 text-4xl font-bold text-white">
-                  {selectedWeapon.nome}
-                </h3>
-                <div
-                  className="text-green-500 border-2 rounded-full px-4"
+    <div className="relative h-full">
+      {/* Background Image */}
+      <Image
+        src={ArsenalBg}
+        alt="Arsenal background"
+        quality={60}
+        loading="lazy"
+        unoptimized={true}
+        placeholder="blur"
+        className="fixed object-cover top-0 left-0 w-full h-full pointer-events-none"
+      />
+      {/* Main Content */}
+      <div className="relative flex flex-col justify-center align-middle gap-10 md:gap-20 md:container p-10 mb-10">
+        {/* Info and image */}
+        <div className="flex gap-10 min-h-[500px]">
+          {/* Info */}
+          <div className="flex flex-col justify-center w-full md:w-4/6">
+            {/* Title */}
+            <h2 className="text-gray-500 text-lg font-semibold">
+              Weapons and Utilities
+            </h2>
+            {/* description */}
+            {selectedWeapon && (
+              <div className="flex flex-col gap-2 mt-2" key={selectedWeapon.id}>
+                {/* Name / tag / rarity */}
+                <div className="flex gap-4 items-center">
+                  {/* Name */}
+                  <h3 className="text-4xl font-bold text-white">
+                    {selectedWeapon.nome}
+                  </h3>
+                  {/* Tag */}
+                  <div
+                    className="mt-2 px-3 border-[1px] text-sm text-[#e2e2e2] rounded-full"
+                    style={{
+                      borderColor: selectedWeapon.tagsType.includes("Ranged")
+                        ? "#4CAF50"
+                        : "#FF5722",
+                    }}
+                  >
+                    {selectedWeapon.tagsType.join(" ")}
+                  </div>
+                  {/* Rarity */}
+                  <div className="mt-2 px-3 border-[1px] text-sm rounded-full"
                   style={{
-                    color: selectedWeapon.tagsType.includes("Ranged")
-                      ? "#4CAF50"
-                      : "#FF5722",
-                    borderColor: selectedWeapon.tagsType.includes("Ranged")
-                      ? "#4CAF50"
-                      : "#FF5722",
-                  }}
-                >
-                  {selectedWeapon.tagsType.join(" ")}
+                    color: selectedWeapon.rarityColor,
+                    borderColor: selectedWeapon.rarityColor,
+                  }}>
+                    {selectedWeapon.rarity}
+                  </div>
+                </div>
+                {/* Description */}
+                <p className="text-[#e2e2e2] text-sm font-normal">
+                  {selectedWeapon.description}
+                </p>
+                {/* Elements */}
+                <div className="mt-2">
+                  <strong className="text-white">Elements:</strong>
+                  <div className="flex gap-2">
+                    {selectedWeapon.tagsElement.map((element, index) => (
+                      <Image
+                        src={element}
+                        alt={`Element ${index}`}
+                        key={index}
+                        width={30}
+                        height={30}
+                        quality={60}
+                        loading="lazy"
+                        unoptimized={true}
+                        placeholder="blur"
+                        blurDataURL={selectedWeapon.imagem}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-              <p className="text-[#ffffff] text-sm font-normal">
-                {selectedWeapon.description}
-              </p>
-
-              <div className="mt-4">
-                <strong className="text-white">Elements: </strong>
-                <div className="flex space-x-2 ">
-                  {selectedWeapon.tagsElement.map((element, index) => (
-                    <Image
-                      key={index}
-                      src={element}
-                      width={32}
-                      height={32}
-                      alt={`Element ${index}`}
-                      className="drop-shadow-xl"
-                      loading="lazy"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Image */}
-        <div className="hidden md:flex items-center justify-center">
-          {selectedWeapon && (
-            <div
-              className={`transition-all duration-500 ease-in-out transform ${
-                selectedValue
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              key={selectedWeapon.imagem}
-            >
+            )}
+          </div>
+          {/* Image */}
+          <div className="hidden md:flex md:items-center md:justify-center w-2/6">
+            {selectedWeapon && (
               <Image
-                priority
-                width={250}
-                height={300}
+                key={selectedWeapon.imagem}
                 src={selectedWeapon.imagem}
                 alt={selectedWeapon.nome}
-                className="pointer-events-none shadow-white drop-shadow-2xl rounded-md transition-transform duration-500 ease-in-out"
+                width={720}
+                height={860}
+                quality={80}
+                loading="lazy"
+                unoptimized={true}
+                placeholder="blur"
+                blurDataURL={selectedWeapon.imagem}
+                className="pointer-events-none"
               />
-            </div>
-          )}
+            )}
+          </div>
         </div>
-
         {/* Thumb Carousel */}
-        <div className="col-span-2 flex items-center justify-center flex-wrap gap-10 mt-10 md:mt-0">
+        <div className="flex items-center justify-center flex-wrap gap-3 gap-y-6 md:gap-10">
+          {/* Card */}
           {weapons.map((weapon) => (
             <label
               key={weapon.id}
-              className={`transition-all duration-1000 flex flex-col justify-between w-40 h-[250px] cursor-pointer rounded-md border-[2px] bg-transparent bg-[linear-gradient(160deg,rgba(18,15,12,0.8),rgba(251,102,37,0.4))] ${
+              className={`flex flex-col justify-between w-28 md:w-40 h-[200px] md:h-[250px] cursor-pointer rounded-md border-[1px] bg-transparent bg-[linear-gradient(160deg,rgba(18,15,12,0.8),rgba(251,102,37,0.4))] transition-all duration-1000 ${
                 selectedValue === weapon.id.toString()
-                  ? "-translate-y-6 opacity-100 shadow-xl shadow-[rgba(0,0,0,.3)]"
-                  : "opacity-60 border-transparent blur-[1px]"
+                  ? "opacity-100 blur-[0px] md:-translate-y-6 shadow-xl shadow-[rgba(0,0,0,.3)]"
+                  : "opacity-60 blur-[2px] border-transparent"
               }`}
               style={{
                 borderColor:
@@ -125,36 +140,22 @@ export default function ArsenalDisplay() {
                 className="peer hidden"
               />
               <Image
-                width={250}
-                height={300}
-                quality={30}
                 src={weapon.imagem}
                 alt={weapon.nome}
-                className={`pointer-events-none rounded-md transition-transform drop-shadow-2xl shadow-red-600 duration-500 ease-in-out ${
+                width={720}
+                height={860}
+                quality={20}
+                loading="lazy"
+                unoptimized={true}
+                placeholder="blur"
+                blurDataURL={weapon.imagem}
+                className={`pointer-events-none transition-transform duration-500 ease-in-out ${
                   selectedValue === weapon.id.toString()
                     ? "rotate-[10deg] scale-125"
                     : "rotate-0 scale-100"
                 }`}
-                loading="lazy"
               />
-              <div className="px-4 overflow-hidden">
-                <div className="font-bold text-white pb-1 mt-4">
-                  {weapon.nome}
-                </div>
-                <div
-                  className={`w-auto h-auto rounded-full transition-all duration-500 transform ${
-                    selectedValue === weapon.id.toString()
-                      ? "translate-y-6"
-                      : "-translate-y-2"
-                  }`}
-                  style={{
-                    color: `${weapon.rarityColor}`,
-                    borderColor: `${weapon.rarityColor}`,
-                  }}
-                >
-                  {weapon.rarity}
-                </div>
-              </div>
+              <div className="font-bold text-white p-4">{weapon.nome}</div>
             </label>
           ))}
         </div>

@@ -25,7 +25,7 @@ const weapons: Weapon[] = [
     imagem: "/weapons/Sharpshot-Bow.webp",
     tagsType: ["Ranged"],
     rarity: "Rare",
-    rarityColor: "#6895b1",
+    rarityColor: "#25a4f4",
     tagsElement: ["/elements/Damage.webp"],
     description: "The Banuk Powershot Bow is a specialized Sharpshot Bow available only once per playthrough, from Bluegleam Merchants in The Cut. It normally costs 14 Bluegleam, though the AdeptNG+ version requires additional resources. It is capable of 'overdrawn' shots where the user can draw the string longer than the limit of regular variants for exceedingly powerful shots. It has 3 slots and is capable of using all 3 varieties of Sharpshot Bow ammo like the Shadow variant. Combined with nocking triple arrows and the usage of damage mods, a fully power-drawn shot can deal extremely high damage per shot from a rather surprising range, perfect for sniping.",
   },{
@@ -34,7 +34,7 @@ const weapons: Weapon[] = [
     imagem: "/weapons/Tearblaster.webp",
     tagsType: ["Ranged"],
     rarity: "Rare",
-    rarityColor: "#6895b1",
+    rarityColor: "#25a4f4",
     tagsElement: ["/elements/Damage.webp", "/elements/Explosive.webp"],
     description: "The Tearblaster is a short-range ranged weapon that fires blasts of compressed air that easily strip armor and components from machines and stagger human and small machine enemies.",
   },{
@@ -43,7 +43,7 @@ const weapons: Weapon[] = [
     imagem: "/weapons/Icerail.webp",
     tagsType: ["Ranged"],
     rarity: "Epic",
-    rarityColor: "#82218c",
+    rarityColor: "#9903aa",
     tagsElement: ["/elements/Damage.webp", "/elements/Freeze.webp"],
     description: "The Icerail is a close-ranged weapon in Horizon Zero Dawn: The Frozen Wilds. It fires a close-ranged attack that deals low amounts of damage but has high Freeze severity. The weapon is first given to Aloy as reward for completing the quest For the Werak. It can later be purchased from Special Merchants in The Cut.",
   },{
@@ -52,7 +52,7 @@ const weapons: Weapon[] = [
     imagem: "/weapons/War-Bow.webp",
     tagsType: ["Ranged"],
     rarity: "Epic",
-    rarityColor: "#82218c",
+    rarityColor: "#9903aa",
     tagsElement: ["/elements/Freeze.webp", "/elements/Shock.webp", "/elements/Corruption.webp"],
     description: "The War Bow is a ranged weapon in Horizon Zero Dawn. It is a low damage bow that specializes in delivering elemental payloads to targets, forcing them into vulnerable states. This bow is best used in conjunction with other weapons due to its low impact and tear damage."
   }

@@ -43,7 +43,7 @@ export default function ArsenalDisplay() {
             {selectedWeapon && (
               <div className="flex flex-col gap-2 mt-2" key={selectedWeapon.id}>
                 {/* Name / tag / rarity */}
-                <div className="flex flex-wrap gap-4 items-center">
+                <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
                   {/* Name */}
                   <h3 className="text-4xl font-bold text-white">
                     {selectedWeapon.nome}
@@ -146,8 +146,8 @@ export default function ArsenalDisplay() {
               <Image
                 src={weapon.imagem}
                 alt={weapon.nome}
-                width={360}
-                height={430}
+                width={250}
+                height={250}
                 quality={20}
                 loading="lazy"
                 unoptimized={true}

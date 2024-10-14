@@ -25,7 +25,6 @@ export default function ArsenalDisplay() {
         alt="Arsenal background"
         quality={60}
         loading="lazy"
-        unoptimized={true}
         placeholder="blur"
         className="fixed object-cover top-0 left-0 w-full h-full pointer-events-none"
       />
@@ -89,7 +88,6 @@ export default function ArsenalDisplay() {
                         height={30}
                         quality={60}
                         loading="lazy"
-                        unoptimized={true}
                       />
                     ))}
                   </div>
@@ -108,7 +106,6 @@ export default function ArsenalDisplay() {
                 height={860}
                 quality={80}
                 loading="lazy"
-                unoptimized={true}
                 placeholder="blur"
                 blurDataURL={selectedWeapon.imagem}
                 className="pointer-events-none"
@@ -150,9 +147,6 @@ export default function ArsenalDisplay() {
                 height={250}
                 quality={20}
                 loading="lazy"
-                unoptimized={true}
-                placeholder="blur"
-                blurDataURL={weapon.imagem}
                 className={`pointer-events-none transition-transform duration-500 ease-in-out ${
                   selectedValue === weapon.id.toString()
                     ? "rotate-[10deg] scale-125"

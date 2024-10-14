@@ -1,6 +1,6 @@
 // import ParallaxEffect from "@/components/ParallaxEffect";
 import MachineDisplay from "@/components/MachinesDisplay";
-import WeaponsDisplay from "@/components/weaponsDisplay";
+import WeaponsDisplay from "@/components/WeaponsDisplay";
 
 export default function Home() {
   return (

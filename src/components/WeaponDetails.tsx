@@ -1,7 +1,13 @@
 import React from 'react';
 import LazyImage from '@/core/utils/LazyImage';
+import { StaticImageData } from 'next/image';
+import { Weapon } from '@/core/types';
 
-export default function WeaponDetails({ selectedWeapon }) {
+interface WeaponDetailsProps {
+  selectedWeapon: Weapon | null | any;
+}
+
+export default function WeaponDetails({ selectedWeapon }: WeaponDetailsProps) {
   if (!selectedWeapon) return null;
 
   return (
@@ -35,7 +41,7 @@ export default function WeaponDetails({ selectedWeapon }) {
       <div className="mt-2">
         <strong className="text-white">Elements:</strong>
         <div className="flex gap-2">
-          {selectedWeapon.tagsElement.map((element, index) => (
+          {selectedWeapon.tagsElement.map((element: string | StaticImageData, index: React.Key | null | undefined) => (
             <LazyImage
               src={element}
               alt={`Element ${index}`}

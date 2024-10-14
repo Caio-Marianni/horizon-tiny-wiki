@@ -1,7 +1,18 @@
 import React from 'react';
+import { Weapon } from '@/core/types';
 import LazyImage from '@/core/utils/LazyImage';
 
-export default function WeaponCarousel({ weapons, selectedValue, setSelectedValue }) {
+interface WeaponCarouselProps {
+  weapons: Weapon[];
+  selectedValue: string;
+  setSelectedValue: (value: string) => void;
+}
+
+export default function WeaponCarousel({
+  weapons,
+  selectedValue,
+  setSelectedValue,
+}: WeaponCarouselProps) {
   return (
     <div className="flex items-center justify-center flex-wrap gap-3 gap-y-6 md:gap-10">
       {weapons.map((weapon) => (

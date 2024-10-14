@@ -1,6 +1,6 @@
-import ArsenalDisplay from "@/components/ArsenalDisplay";
-import MachineDisplay from "@/components/MachineDisplay";
-import ParallaxEffect from "@/components/ParallaxEffect";
+// import ParallaxEffect from "@/components/ParallaxEffect";
+import MachineDisplay from "@/components/MachinesDisplay";
+import WeaponsDisplay from "@/components/weaponsDisplay";
 
 export default function Home() {
   return (
@@ -8,11 +8,13 @@ export default function Home() {
       {/* <div className="h-screen">
         <ParallaxEffect />
       </div> */}
+      {/* Blur to change section */}
+      <div className="absolute -translate-y-10 w-full h-20 backdrop-blur-[5px] bg-transparent"></div>
       <div>
-        <ArsenalDisplay />
+        <WeaponsDisplay />
       </div>
       <div>
-        {/* <MachineDisplay /> */}
+        <MachineDisplay />
       </div>
     </div>
   );

@@ -2,8 +2,8 @@
 import React, { useState, useMemo } from "react";
 import LazyImage from "@/core/utils/LazyImage";
 import { weapons } from "@/core/constants";
-import WeaponDetails from "../components/WeaponDetails";
-import WeaponCarousel from "../components/WeaponCarousel";
+import WeaponDetails from "./WeaponDetails";
+import WeaponCarousel from "./WeaponCarousel";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
 
 export default function ArsenalDisplay() {

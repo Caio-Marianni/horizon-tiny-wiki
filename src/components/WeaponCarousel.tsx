@@ -14,7 +14,7 @@ export default function WeaponCarousel({
   setSelectedValue,
 }: WeaponCarouselProps) {
   return (
-    <div className="flex items-center justify-center flex-wrap gap-3 gap-y-6 md:gap-10">
+    <div className="flex items-center justify-center flex-wrap gap-3 gap-y-6 md:gap-10 font-robotoCondensed">
       {weapons.map((weapon) => (
         <label
           key={weapon.id}

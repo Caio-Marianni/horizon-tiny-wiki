@@ -6,7 +6,7 @@ import WeaponDetails from "./WeaponDetails";
 import WeaponCarousel from "./WeaponCarousel";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
 
-export default function ArsenalDisplay() {
+export default function WeaponsDisplay() {
   const [selectedValue, setSelectedValue] = useState<string>(
     weapons[0].id.toString()
   );
@@ -18,24 +18,13 @@ export default function ArsenalDisplay() {
 
   return (
     <div className="relative h-full">
-      {/* Background */}
-      <LazyImage
-        src={ArsenalBg}
-        alt="Arsenal background"
-        width={1920}
-        height={1080}
-        quality={60}
-        loading="lazy"
-        placeholder="blur"
-        className="fixed object-cover top-0 left-0 w-full h-full pointer-events-none"
-      />
       {/* Main */}
       <div className="relative flex flex-col justify-center align-middle gap-10 md:gap-20 md:container p-10 mb-10">
         {/* Content */}
         <div className="flex gap-10 min-h-[500px]">
           {/* Details */}
           <div className="flex flex-col justify-center w-full md:w-4/6">
-            <h2 className="text-gray-500 text-lg font-semibold">
+            <h2 className="text-gray-500 text-lg font-semibold font-oswald">
               Weapons and Utilities
             </h2>
             <WeaponDetails selectedWeapon={selectedWeapon} />

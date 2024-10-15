@@ -8,12 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        oswald: ["Oswald", "sans-serif"],
+        robotoCondensed: ["Roboto Condensed", "sans-serif"],
       },
     },
   },
   plugins: [],
 };
+
 export default config;

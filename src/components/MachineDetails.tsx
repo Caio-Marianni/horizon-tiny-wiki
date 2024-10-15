@@ -13,7 +13,7 @@ export default function MachineDetails({
   if (!selectedMachine) return null;
 
   return (
-    <div className="flex flex-col gap-2 mt-2" key={selectedMachine.id}>
+    <div className="flex flex-col gap-2 mt-2 font-robotoCondensed" key={selectedMachine.id}>
       {/* Name and tags */}
       <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
         <h3 className="text-4xl font-bold text-white">
@@ -40,7 +40,7 @@ export default function MachineDetails({
         {selectedMachine.longDescription}
       </p>
       {/* Icons */}
-      <div className="flex items-center justify-around">
+      <div className="flex items-center justify-start gap-10">
         {/* Resistance */}
         <div className="flex flex-col gap-2 text-center">
           <strong className="text-white">Resistance</strong>

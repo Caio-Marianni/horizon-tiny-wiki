@@ -5,7 +5,7 @@ import { machines } from "@/core/constants";
 import MachineDetails from "./MachineDetails";
 import MachineCarousel from "./MachineCarousel";
 
-export default function ArsenalDisplay() {
+export default function MachineDisplay() {
   const [selectedValue, setSelectedValue] = useState<string>(
     machines[0].id.toString()
   );
@@ -18,10 +18,10 @@ export default function ArsenalDisplay() {
   return (
     <div className="relative flex flex-col justify-center align-middle gap-10 md:gap-20 md:container p-10 mb-10">
       {/* Content */}
-      <div className="flex gap-10 min-h-[700px] md:min-h-[600px]">
+      <div className="flex gap-10 min-h-[700px] md:min-h-[600px] lg:min-h-[700px]">
         {/* Details */}
         <div className="flex flex-col justify-center w-full lg:w-4/6">
-          <h2 className="text-gray-500 text-lg font-semibold">Machines</h2>
+          <h2 className="text-gray-500 text-lg font-semibold font-oswald">Machines</h2>
           <MachineDetails selectedMachine={selectedMachine} />
         </div>
         {/* Image */}

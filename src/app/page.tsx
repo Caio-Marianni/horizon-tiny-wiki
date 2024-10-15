@@ -1,28 +1,27 @@
 "use client";
-import ParallaxEffect from "@/components/ParallaxEffect";
+import Parallax from "@/components/Parallax";
 import MachinesDisplay from "@/components/MachinesDisplay";
 import WeaponsDisplay from "@/components/WeaponsDisplay";
-import Image from "next/image";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
+import Background from "@/components/Background";
 
 export default function Home() {
   return (
-    <div className="flex flex-col scroll-smooth">
-      <div className="h-screen">
-        <ParallaxEffect />
+    <div>
+      <div className="overflow-hidden">
+      <Parallax />
       </div>
       {/* Blur to change section */}
       <div className="w-full h-40 -translate-y-5 backdrop-blur-[5px] bg-transparent z-20"></div>
-      {/* Background */}
-      <Image
+      <Background
         src={ArsenalBg}
         alt="Arsenal background"
         width={1920}
         height={1080}
-        quality={60}
-        priority
+        quality={80}
+        speed={0}
         placeholder="blur"
-        className="fixed object-cover top-0 left-0 w-full h-full pointer-events-none -z-50"
+        className="fixed -z-50"
       />
       {/* Main Content */}
       <div>
@@ -33,7 +32,7 @@ export default function Home() {
       </div>
       {/* Footer */}
       <footer className="bg-black w-full py-2 text-white text-center">
-        site desenvolvido por {" "}
+        site desenvolvido por{" "}
         <a
           href="https://caio-marianni-portfolio.vercel.app"
           className="text-red-600"

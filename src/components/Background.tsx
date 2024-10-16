@@ -23,10 +23,14 @@ const Background: React.FC<BackgroundProps> = ({
   className,
 }) => {
   const [offsetY, setOffsetY] = useState(0);
+  const [isClient, setIsClient] = useState(false); // Novo state para verificar se estamos no cliente
 
-  // Hook para adicionar e remover o listener de rolagem
+  // Hook para garantir que a renderização ocorra apenas no cliente
   useEffect(() => {
-    // Verifica se `window` está disponível (só no cliente)
+    // Set isClient para true após a montagem no cliente
+    setIsClient(true);
+
+    // Verifique se window está disponível
     if (typeof window !== "undefined") {
       const handleScroll = () => {
         setOffsetY(window.scrollY);
@@ -39,7 +43,12 @@ const Background: React.FC<BackgroundProps> = ({
         window.removeEventListener("scroll", handleScroll);
       };
     }
-  }, []); // O array vazio garante que o efeito seja executado apenas na montagem e desmontagem
+  }, []);
+
+  // Se não for o cliente, não renderize o componente
+  if (!isClient) {
+    return null; // Evita renderizar no lado do servidor
+  }
 
   // Verifique se o `src` é do tipo `StaticImageData` e obtenha a URL correta
   const blurDataUrl = typeof src === "object" ? src.src : src;

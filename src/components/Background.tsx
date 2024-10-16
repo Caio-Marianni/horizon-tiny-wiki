@@ -44,6 +44,7 @@ const Background: React.FC<BackgroundProps> = ({
 
   return (
     <Image
+      priority
       src={src}
       alt={alt}
       width={width}

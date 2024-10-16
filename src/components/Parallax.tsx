@@ -44,7 +44,7 @@ const Parallax: React.FC = () => {
           src={Logo}
           alt="Logo"
           width={500}
-          height={250}
+          height={500}
           quality={60}
           speed={20}
           className="relative top-20"

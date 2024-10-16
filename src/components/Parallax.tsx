@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Background from "./Background";
 import Logo from "../../public/logo.png";

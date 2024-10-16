@@ -1,12 +1,16 @@
 "use client";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import ScrollReveal from "scrollreveal";
 import Parallax from "@/components/Parallax";
 import MachinesDisplay from "@/components/MachinesDisplay";
 import WeaponsDisplay from "@/components/WeaponsDisplay";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
-import Background from "@/components/Background";
+// import Background from "@/components/Background";
 import ReadMe from "@/components/ReadMe";
+
+const Background = dynamic(() => import("@/components/Background"), { ssr: false });
+
 
 export default function Home() {
   useEffect(() => {

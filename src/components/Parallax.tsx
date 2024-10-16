@@ -46,7 +46,7 @@ const Parallax: React.FC = () => {
           width={500}
           height={250}
           quality={60}
-          speed={15}
+          speed={20}
           className="relative top-20"
         />
       </div>

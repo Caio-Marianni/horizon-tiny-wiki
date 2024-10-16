@@ -23,7 +23,7 @@ export default function WeaponsDisplay() {
         {/* Content */}
         <div className="flex gap-10 min-h-[500px]">
           {/* Details */}
-          <div className="flex flex-col justify-center w-full md:w-4/6">
+          <div className="reveal flex flex-col justify-center w-full md:w-4/6">
             <h2 className="text-gray-500 text-lg font-semibold font-oswald">
               Weapons and Utilities
             </h2>

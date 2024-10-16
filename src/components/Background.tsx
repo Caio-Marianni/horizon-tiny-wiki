@@ -51,7 +51,7 @@ const Background: React.FC<BackgroundProps> = ({
       quality={quality}
       placeholder={placeholder} 
       blurDataURL={blurDataUrl} 
-      className={`${className} object-cover top-0 left-0 w-full h-full pointer-events-none`}
+      className={`${className} pointer-events-none`}
       style={{
         transform: `translateY(${offsetY * (speed / 10)}px)`, // Efeito parallax baseado na rolagem
       }}

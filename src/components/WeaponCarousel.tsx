@@ -46,7 +46,7 @@ export default function WeaponCarousel({
             height={250}
             quality={20}
             loading="lazy"
-            className={`pointer-events-none transition-transform duration-500 ease-in-out ${
+            className={`reveal pointer-events-none transition-transform duration-500 ease-in-out ${
               selectedValue === weapon.id.toString()
                 ? "rotate-[10deg] scale-125"
                 : "rotate-0 scale-100"

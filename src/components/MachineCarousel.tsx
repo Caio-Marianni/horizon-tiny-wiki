@@ -14,7 +14,7 @@ export default function MachineCarousel({
   setSelectedValue,
 }: MachineCarouselProps) {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center flex-wrap gap-y-8 md:gap-10 font-robotoCondensed">
+    <div className="reveal flex flex-col md:flex-row items-center justify-center flex-wrap gap-y-8 md:gap-10 font-robotoCondensed">
       {machines.map((machine) => (
         <label
           key={machine.id}

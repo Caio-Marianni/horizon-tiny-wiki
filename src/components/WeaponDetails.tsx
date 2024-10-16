@@ -11,7 +11,7 @@ export default function WeaponDetails({ selectedWeapon }: WeaponDetailsProps) {
   if (!selectedWeapon) return null;
 
   return (
-    <div className="flex flex-col gap-2 mt-2" key={selectedWeapon.id}>
+    <div className="reveal flex flex-col gap-2 mt-2" key={selectedWeapon.id}>
       <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
         <h3 className="text-4xl font-bold text-white font-robotoCondensed">{selectedWeapon.nome}</h3>
         <div className="flex gap-2">

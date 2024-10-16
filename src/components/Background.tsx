@@ -24,20 +24,22 @@ const Background: React.FC<BackgroundProps> = ({
 }) => {
   const [offsetY, setOffsetY] = useState(0);
 
-  // Função que lida com o evento de rolagem
-  const handleScroll = () => {
-    setOffsetY(window.scrollY);
-  };
-
   // Hook para adicionar e remover o listener de rolagem
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    // Verifica se `window` está disponível (só no cliente)
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        setOffsetY(window.scrollY);
+      };
 
-    // Limpeza do evento ao desmontar o componente
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+      window.addEventListener("scroll", handleScroll);
+
+      // Limpeza do evento ao desmontar o componente
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []); // O array vazio garante que o efeito seja executado apenas na montagem e desmontagem
 
   // Verifique se o `src` é do tipo `StaticImageData` e obtenha a URL correta
   const blurDataUrl = typeof src === "object" ? src.src : src;

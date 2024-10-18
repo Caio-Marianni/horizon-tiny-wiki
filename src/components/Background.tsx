@@ -24,7 +24,6 @@ const Background: React.FC<BackgroundProps> = ({
 }) => {
   const [offsetY, setOffsetY] = useState(0);
 
-  // Verifica se estamos no lado do cliente antes de acessar o window
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleScroll = () => {
@@ -43,7 +42,6 @@ const Background: React.FC<BackgroundProps> = ({
 
   return (
     <Image
-      priority
       src={src}
       alt={alt}
       width={width}

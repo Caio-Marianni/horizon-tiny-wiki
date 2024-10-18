@@ -24,21 +24,21 @@ const Background: React.FC<BackgroundProps> = ({
 }) => {
   const [offsetY, setOffsetY] = useState(0);
 
-  // Verificação para garantir que o código roda no cliente
+  // Garantir que o código seja executado apenas no lado do cliente
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleScroll = () => {
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
         setOffsetY(window.scrollY);
-      };
+      }
+    };
 
-      // Adiciona o evento de rolagem no cliente
-      window.addEventListener("scroll", handleScroll);
+    // Adiciona o evento de rolagem no cliente
+    window.addEventListener("scroll", handleScroll);
 
-      // Remove o evento ao desmontar o componente
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
+    // Remove o evento ao desmontar o componente
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Verifique se o `src` é do tipo `StaticImageData` e obtenha a URL correta

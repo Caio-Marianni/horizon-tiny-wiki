@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 
 interface BackgroundProps {
@@ -18,47 +18,68 @@ const Background: React.FC<BackgroundProps> = ({
   width,
   height,
   quality,
-  placeholder = "empty",
+  placeholder,
   speed = 1,
-  className = "",
+  className,
 }) => {
-  const [offsetY, setOffsetY] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
 
-  // Garantir que o código seja executado apenas no lado do cliente
+  // Usando IntersectionObserver para detectar quando o componente está visível
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1, // Visível em 10% do viewport
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [ref]);
+
+  // Efeito de rolagem baseado em IntersectionObserver
   useEffect(() => {
     const handleScroll = () => {
-      if (typeof window !== "undefined") {
-        setOffsetY(window.scrollY);
+      if (isVisible) {
+        setScrollY(window.scrollY);
       }
     };
 
-    // Adiciona o evento de rolagem no cliente
     window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isVisible]);
 
-    // Remove o evento ao desmontar o componente
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Verifique se o `src` é do tipo `StaticImageData` e obtenha a URL correta
+  // Verifique se o `src` é do tipo `StaticImageData`
   const blurDataUrl = typeof src === "object" ? src.src : undefined;
 
   return (
-    <Image
-      priority
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      quality={quality}
-      placeholder={placeholder}
-      blurDataURL={blurDataUrl}
-      className={`${className} pointer-events-none`}
-      style={{
-        transform: `translateY(${offsetY * (speed / 10)}px)`, // Efeito parallax baseado na rolagem
-      }}
-    />
+    <div ref={ref}>
+      <Image
+        priority
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        quality={quality}
+        placeholder={placeholder}
+        blurDataURL={blurDataUrl}
+        className={`${className} pointer-events-none`}
+        style={{
+          transform: `translateY(${scrollY * (speed / 10)}px)`, // Efeito parallax baseado na rolagem
+        }}
+      />
+    </div>
   );
 };
 

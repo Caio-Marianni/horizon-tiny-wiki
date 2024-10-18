@@ -10,6 +10,7 @@ interface BackgroundProps {
   placeholder?: "blur" | "empty";
   speed?: number;
   className?: string;
+  sizes?: string;
 }
 
 const Background: React.FC<BackgroundProps> = ({
@@ -21,15 +22,16 @@ const Background: React.FC<BackgroundProps> = ({
   placeholder,
   speed = 1,
   className,
+  sizes,
 }) => {
   const [offsetY, setOffsetY] = useState(0);
-  const [isAboveSM, setIsAboveSM] = useState(false);
+  const [isAboveMD, setisAboveMD] = useState(false);
 
   // Verifica se estamos no lado do cliente e se a tela é maior que "SM"
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
-        setIsAboveSM(window.innerWidth >= 640); // SM no Tailwind é 640px
+        setisAboveMD(window.innerWidth >= 768); // SM no Tailwind é 640px
       };
 
       // Define inicialmente o estado do tamanho da tela
@@ -46,7 +48,7 @@ const Background: React.FC<BackgroundProps> = ({
 
   // Detecta a rolagem apenas se estiver acima de SM
   useEffect(() => {
-    if (isAboveSM && typeof window !== "undefined") {
+    if (isAboveMD && typeof window !== "undefined") {
       const handleScroll = () => {
         setOffsetY(window.scrollY);
       };
@@ -57,7 +59,7 @@ const Background: React.FC<BackgroundProps> = ({
         window.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [isAboveSM]);
+  }, [isAboveMD]);
 
   const blurDataUrl = typeof src === "object" ? src.src : undefined;
 
@@ -71,8 +73,9 @@ const Background: React.FC<BackgroundProps> = ({
       placeholder={placeholder}
       blurDataURL={blurDataUrl}
       className={`${className} pointer-events-none`}
+      sizes={sizes}
       style={{
-        transform: isAboveSM ? `translateY(${offsetY * (speed / 10)}px)` : undefined,
+        transform: isAboveMD ? `translateY(${offsetY * (speed / 10)}px)` : undefined,
       }}
     />
   );

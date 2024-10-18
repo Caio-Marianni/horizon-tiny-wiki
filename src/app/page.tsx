@@ -34,6 +34,7 @@ export default function Home() {
         speed={0}
         placeholder="blur"
         className="fixed object-cover h-full top-0 left-0 -z-50"
+        sizes="(max-width: 640px) 100vw, (min-width: 641px) 50vw"
       />
 
       {/* Main Content */}

@@ -4,17 +4,31 @@ import { useEffect } from "react";
 const ScrollRevealComponent = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Carrega o ScrollReveal dinamicamente apenas no lado do cliente
+      // Importa ScrollReveal dinamicamente
       import("scrollreveal").then((scrollReveal) => {
-        // Acessa o export padrão corretamente
-        const sr = scrollReveal.default;
-        sr.reveal(".reveal", {
-          distance: "50px",
-          duration: 1000,
-          easing: "ease-in-out",
-          origin: "bottom",
-          reset: true, // Ativa animação toda vez que o usuário faz scroll
-        });
+        // Algumas versões do ScrollReveal podem precisar de sr() em vez de sr.reveal()
+        const sr = scrollReveal.default || scrollReveal;
+        
+        // Verifique se sr é uma função ou objeto e chame apropriadamente
+        if (typeof sr === "function") {
+          sr().reveal(".reveal", {
+            distance: "50px",
+            duration: 1000,
+            easing: "ease-in-out",
+            origin: "bottom",
+            reset: true,
+            interval: 200,
+          });
+        } else if (sr && typeof sr.reveal === "function") {
+          sr.reveal(".reveal", {
+            distance: "50px",
+            duration: 1000,
+            easing: "ease-in-out",
+            origin: "bottom",
+            reset: true,
+            interval: 200,
+          });
+        }
       });
     }
   }, []);

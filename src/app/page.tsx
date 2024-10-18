@@ -107,7 +107,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black w-full py-2 text-white text-center">
         site desenvolvido por{" "}
-        <a href="https://caio-marianni-portfolio.vercel.app" className="text-cyan-500">
+        <a href="https://caio-marianni-portfolio.vercel.app" className="text-[#EFBF04]">
           mim
         </a>
       </footer>

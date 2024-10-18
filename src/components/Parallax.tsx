@@ -1,66 +1,59 @@
-'use client'
-import React from "react";
-import Background from "./Background";
-import Logo from "../../public/logo.png";
-import LayerMountain from "../../public/background/layerMountain.webp";
-import LayerThree from "../../public/background/layerThree.webp";
-import LayerMachine from "../../public/background/layerMachine.webp";
+import React, { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
-const Parallax: React.FC = () => {
+interface ParallaxProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  speed: number;
+}
+
+const ParallaxImage: React.FC<ParallaxProps> = ({ src, alt, width, height, speed }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const handleScroll = () => {
+            setOffsetY(window.scrollY);
+          };
+
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="relative min-h-[700px] md:min-h-screen">
-      {/* Background Layer */}
-      <Background
-        src={LayerMountain}
-        alt="Background Mountain"
-        width={1920}
-        height={1080}
-        quality={80}
-        speed={5}
-        className="absolute top-0 left-0 object-cover h-full"
-      />
-      {/* First Parallax Layer */}
-      <Background
-        src={LayerThree}
-        alt="Background Three"
-        width={1920}
-        height={1080}
-        quality={80}
-        speed={10}
-        className="absolute bottom-0 lg:-bottom-40"
-      />
-      {/* Second Parallax Layer */}
-      <Background
-        src={LayerMachine}
-        alt="Background Machine"
-        width={1920}
-        height={1080}
-        quality={80}
-        speed={15}
-        className="absolute bottom-40 lg:bottom-5"
-      />
-      {/* Logo Layer */}
-      <div className="flex justify-center items-center mx-10">
-        <Background
-          src={Logo}
-          alt="Logo"
-          width={500}
-          height={500}
-          quality={60}
-          speed={20}
-          className="relative top-20"
-        />
-      </div>
-      {/* Scroll indicator */}
-      <div className="absolute flex justify-center bottom-14 w-full">
-        <div className="relative flex flex-col gap h-10 bottom-0 z-40">
-          <div className="inline-block p-4 absolute top-0 rotate-45 border-b-2 border-r-2 border-[#ebff0d]"></div>
-          <div className="inline-block p-4 absolute top-0 rotate-45 border-b-2 border-r-2 border-[#ebff0d] animate-arrow1"></div>
-          <div className="inline-block p-4 absolute top-0 rotate-45 border-b-2 border-r-2 border-[#ebff0d] animate-arrow2"></div>
-        </div>
-      </div>
+    <div ref={ref} style={{ transform: `translateY(${offsetY * (speed / 10)}px)` }}>
+      <Image src={src} alt={alt} width={width} height={height} />
     </div>
   );
 };
 
-export default Parallax;
+const ParallaxPage: React.FC = () => {
+  return (
+    <div>
+      <ParallaxImage src="/background/layerMountain.webp" alt="Mountain" width={1920} height={1080} speed={5} />
+      <ParallaxImage src="/background/layerThree.webp" alt="Three" width={1920} height={1080} speed={10} />
+      <ParallaxImage src="/background/layerMachine.webp" alt="Machine" width={1920} height={1080} speed={15} />
+    </div>
+  );
+};
+
+export default ParallaxPage;

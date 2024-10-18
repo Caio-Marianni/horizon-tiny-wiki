@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import ScrollReveal from "scrollreveal";
 import Parallax from "@/components/Parallax";
 import MachinesDisplay from "@/components/MachinesDisplay";
@@ -31,13 +32,12 @@ export default function Home() {
       </div>
       {/* Blur to change section */}
       <div className="w-full h-40 -translate-y-5 backdrop-blur-[5px] bg-transparent z-20"></div>
-      <Background
+      <Image
         src={ArsenalBg}
         alt="Arsenal background"
         width={1920}
         height={1080}
         quality={80}
-        speed={0}
         placeholder="blur"
         className="fixed object-cover h-full top-0 left-0 -z-50"
       />

@@ -15,7 +15,7 @@ const Parallax: React.FC = () => {
         alt="Background Mountain"
         width={1920}
         height={1080}
-        quality={40}
+        quality={20}
         speed={5}
         className="absolute top-0 left-0 object-cover h-full"
       />
@@ -25,7 +25,7 @@ const Parallax: React.FC = () => {
         alt="Background Three"
         width={1920}
         height={1080}
-        quality={70}
+        quality={50}
         speed={10}
         className="absolute bottom-0 lg:-bottom-40"
       />
@@ -35,7 +35,7 @@ const Parallax: React.FC = () => {
         alt="Background Machine"
         width={1920}
         height={1080}
-        quality={70}
+        quality={50}
         speed={15}
         className="absolute bottom-40 lg:bottom-5"
       />
@@ -46,7 +46,7 @@ const Parallax: React.FC = () => {
           alt="Logo"
           width={500}
           height={500}
-          quality={40}
+          quality={20}
           speed={20}
           className="relative top-20"
         />

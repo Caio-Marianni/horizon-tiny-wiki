@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 
-
 interface BackgroundProps {
   src: string | StaticImageData;
   alt: string;
   width: number;
   height: number;
   quality: number;
-  placeholder?: "blur" | "empty"; // Tipagem corrigida
+  placeholder?: "blur" | "empty";
   speed?: number;
   className?: string;
 }
@@ -19,22 +18,23 @@ const Background: React.FC<BackgroundProps> = ({
   width,
   height,
   quality,
-  placeholder,
+  placeholder = "empty",
   speed = 1,
-  className,
+  className = "",
 }) => {
   const [offsetY, setOffsetY] = useState(0);
 
-  // Adiciona verificação para garantir que o código está rodando no cliente
+  // Verificação para garantir que o código roda no cliente
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleScroll = () => {
         setOffsetY(window.scrollY);
       };
-      
-      // Adiciona o evento de rolagem quando o cliente estiver disponível
+
+      // Adiciona o evento de rolagem no cliente
       window.addEventListener("scroll", handleScroll);
-      
+
+      // Remove o evento ao desmontar o componente
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
@@ -42,7 +42,7 @@ const Background: React.FC<BackgroundProps> = ({
   }, []);
 
   // Verifique se o `src` é do tipo `StaticImageData` e obtenha a URL correta
-  const blurDataUrl = typeof src === "object" ? src.src : src;
+  const blurDataUrl = typeof src === "object" ? src.src : undefined;
 
   return (
     <Image
@@ -52,8 +52,8 @@ const Background: React.FC<BackgroundProps> = ({
       width={width}
       height={height}
       quality={quality}
-      placeholder={placeholder} 
-      blurDataURL={blurDataUrl} 
+      placeholder={placeholder}
+      blurDataURL={blurDataUrl}
       className={`${className} pointer-events-none`}
       style={{
         transform: `translateY(${offsetY * (speed / 10)}px)`, // Efeito parallax baseado na rolagem

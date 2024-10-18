@@ -53,10 +53,11 @@ import MachinesDisplay from "@/components/MachinesDisplay";
 import WeaponsDisplay from "@/components/WeaponsDisplay";
 import ReadMe from "@/components/ReadMe";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
-import ScrollRevealComponent from "@/core/utils/ScrollRevealComponent";
 
-// Importa dinamicamente o componente Background (sem SSR)
+// Importa dinamicamente o componente Background e ScrollRevealComponent (sem SSR)
 const Background = dynamic(() => import("@/components/Background"), { ssr: false });
+const ScrollRevealComponent = dynamic(() => import('@/core/utils/ScrollRevealComponent'), { ssr: false });
+
 
 export default function Home() {
   return (

@@ -4,21 +4,8 @@ import MachinesDisplay from "@/components/MachinesDisplay";
 import WeaponsDisplay from "@/components/WeaponsDisplay";
 import ArsenalBg from "../../public/background/arsenalBackground.webp";
 import Background from "@/components/Background";
-import ScrollReveal from "scrollreveal";
-import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    // Inicializar o ScrollReveal com opções globais
-    ScrollReveal().reveal(".reveal", {
-      distance: "50px",
-      duration: 1000,
-      easing: "ease-in-out",
-      origin: "bottom",
-      reset: true, // Você pode ativar isso se quiser que a animação aconteça toda vez que o usuário fizer scroll
-    });
-  }, []);
-
   return (
     <div>
       <div className="overflow-hidden">
@@ -40,7 +27,7 @@ export default function Home() {
       <div>
         <WeaponsDisplay />
         {/* Border */}
-        <div className="reveal pt-20 m-auto w-[95%] lg:w-[85%] border-b-[1px] opacity-10"></div>
+        <div className="pt-20 m-auto w-[95%] lg:w-[85%] border-b-[1px] opacity-10"></div>
         <MachinesDisplay />
       </div>
       {/* Footer */}
